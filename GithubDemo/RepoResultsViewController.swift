@@ -10,15 +10,15 @@ import UIKit
 import MBProgressHUD
 
 // Main ViewController
-class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-
+class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SettingDelegate {
 
     @IBOutlet weak var searchTableView: UITableView!
     var searchBar: UISearchBar!
     var searchSettings = GithubRepoSearchSettings()
 
     var repos: [GithubRepo]!
+    
+    var starFilter: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,10 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
 
         // Perform the first search when the view controller first loads
         doSearch()
+    }
+    
+    func setStars(witStars stars: Int) {
+        starFilter = stars
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
